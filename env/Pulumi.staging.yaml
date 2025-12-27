@@ -1,0 +1,10 @@
+config:
+  arm:subscriptionId: /subscriptions/11111111-1111-1111-1111-111111111111
+  arm:location: centralus
+  arm:resourceGroupName: rg-arm-foundation-staging
+  arm:networkResourceGroupName: rg-network-staging
+  arm:vnetName: vnet-staging
+  arm:subnetName: workload
+  arm:opsResourceGroupName: rg-ops-staging
+  arm:logAnalyticsWorkspaceName: law-staging
+  arm:keyVaultName: kv-staging-contoso

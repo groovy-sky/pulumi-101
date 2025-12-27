@@ -1,0 +1,138 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the container group"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Azure region for the container group"
+      }
+    },
+    "image": {
+      "type": "string",
+      "defaultValue": "mcr.microsoft.com/azuredocs/aci-helloworld",
+      "metadata": {
+        "description": "Container image to deploy"
+      }
+    },
+    "port": {
+      "type": "int",
+      "defaultValue": 80,
+      "metadata": {
+        "description": "Port exposed by the container"
+      }
+    },
+    "cpuCores": {
+      "type": "int",
+      "minValue": 1,
+      "metadata": {
+        "description": "Number of CPU cores"
+      }
+    },
+    "memoryInGb": {
+      "type": "int",
+      "minValue": 1,
+      "metadata": {
+        "description": "Memory (GB) allocated to the container group"
+      }
+    },
+    "restartPolicy": {
+      "type": "string",
+      "defaultValue": "Always",
+      "allowedValues": [
+        "Always",
+        "OnFailure",
+        "Never"
+      ],
+      "metadata": {
+        "description": "Restart policy applied to the container group"
+      }
+    },
+    "zone": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Optional availability zone"
+      }
+    },
+    "tags": {
+      "type": "object",
+      "defaultValue": {},
+      "metadata": {
+        "description": "Tags to apply to the container group"
+      }
+    }
+  },
+  "variables": {
+    "zones": "[if(or(equals(parameters('zone'), ''), equals(parameters('zone'), json('null'))), json('null'), array(parameters('zone')))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ContainerInstance/containerGroups",
+      "apiVersion": "2023-05-01",
+      "name": "[parameters('name')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "zones": "[if(equals(variables('zones'), json('null')), json('null'), variables('zones'))]",
+      "properties": {
+        "containers": [
+          {
+            "name": "[parameters('name')]",
+            "properties": {
+              "image": "[parameters('image')]",
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": "[parameters('port')]"
+                }
+              ],
+              "resources": {
+                "requests": {
+                  "cpu": "[parameters('cpuCores')]",
+                  "memoryInGb": "[parameters('memoryInGb')]"
+                }
+              }
+            }
+          }
+        ],
+        "ipAddress": {
+          "type": "Public",
+          "ports": [
+            {
+              "protocol": "TCP",
+              "port": "[parameters('port')]"
+            }
+          ],
+          "dnsNameLabel": "[concat(parameters('name'), '-dns')]"
+        },
+        "osType": "Linux",
+        "restartPolicy": "[parameters('restartPolicy')]"
+      }
+    }
+  ],
+  "outputs": {
+    "containerGroupName": {
+      "type": "string",
+      "value": "[parameters('name')]"
+    },
+    "containerGroupId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.ContainerInstance/containerGroups', parameters('name'))]"
+    },
+    "dnsNameLabel": {
+      "type": "string",
+      "value": "[concat(parameters('name'), '-dns')]"
+    },
+    "fqdn": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.ContainerInstance/containerGroups', parameters('name'))).ipAddress.fqdn]"
+    }
+  }
+}

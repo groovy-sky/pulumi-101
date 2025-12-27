@@ -1,0 +1,13 @@
+config:
+  envStackRef: your-org/env/prod
+  name: prod-container-group
+  image: mcr.microsoft.com/azuredocs/aci-helloworld
+  port: 80
+  cpuCores: 2
+  memoryInGb: 4
+  restartPolicy: OnFailure
+  zone: "1"
+  tags:
+    env: prod
+    app: aci-demo
+    owner: platform-team

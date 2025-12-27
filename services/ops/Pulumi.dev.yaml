@@ -1,0 +1,3 @@
+config:
+  envStackRef: your-org/env/dev
+  containerGroupStackRef: your-org/container-group/dev
