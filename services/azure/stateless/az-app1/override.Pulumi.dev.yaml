@@ -1,5 +1,5 @@
 # Service-specific overrides for az-app1 in dev stack
-# Any values here override services/Pulumi.dev.yaml
+# Any values here override services/config/azure/Pulumi.dev.yaml
 
 # Uncomment to override resource group name:
 # resourceGroupName: rg-custom-az-app1-dev

@@ -1,4 +1,6 @@
 services:
   - name: az-app1
-    path: services/az-app1
+    path: services/azure/stateless/az-app1
+    provider: azure
+    type: stateless
     description: "Empty resource group (starter service)"

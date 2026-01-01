@@ -1,0 +1,29 @@
+# Pulumi state files
+**/.pulumi/
+
+# Generated stack config files (created by pulumiw.py)
+# These are auto-generated from services/config/<provider>/Pulumi.<stack>.yaml + override files
+services/**/stateless/**/Pulumi.dev.yaml
+services/**/stateless/**/Pulumi.prod.yaml
+services/**/stateless/**/Pulumi.staging.yaml
+services/**/stateful/**/Pulumi.dev.yaml
+services/**/stateful/**/Pulumi.prod.yaml
+services/**/stateful/**/Pulumi.staging.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
