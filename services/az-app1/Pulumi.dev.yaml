@@ -1,0 +1,9 @@
+config:
+  az-app1:location: westeurope
+  az-app1:tags:
+    env: dev
+    owner: groovy-sky
+  az-app1:resourceGroupName: rg-svc-az-app1-dev
+  azure-native:tenantId: 00000000-0000-0000-0000-000000000000
+  azure-native:subscriptionId: f406059a-f933-45e0-aefe-e37e0382d5de
+encryptionsalt: v1:5Qcs6x1f2e8=:v1:VImTxEF1lR3GTds/:fhjMsICZMosO9yDmVF/6tIL89aNCLA==

@@ -1,0 +1,23 @@
+name: az-app1
+runtime: yaml
+description: "Service: az-app1 (creates an empty resource group)"
+
+config:
+  az-app1:location:
+    type: string
+  az-app1:resourceGroupName:
+    type: string
+  az-app1:tags:
+    type: object
+
+resources:
+  rg:
+    type: azure-native:resources:ResourceGroup
+    properties:
+      resourceGroupName: ${az-app1:resourceGroupName}
+      location: ${az-app1:location}
+      tags: ${az-app1:tags}
+
+outputs:
+  resourceGroupName: ${rg.name}
+  resourceGroupId: ${rg.id}

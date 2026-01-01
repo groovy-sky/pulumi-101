@@ -1,0 +1,10 @@
+env: dev
+location: westeurope
+
+azure:
+  tenantId: "00000000-0000-0000-0000-000000000000"
+  subscriptionId: "f406059a-f933-45e0-aefe-e37e0382d5de"
+
+tags:
+  env: dev
+  owner: groovy-sky

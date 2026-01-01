@@ -1,0 +1,5 @@
+location: westeurope
+env: prod
+tags:
+  env: prod
+  owner: groovy-sky

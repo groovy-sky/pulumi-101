@@ -1,9 +1,0 @@
-config:
-  azure-native:location: westeurope
-  name: dev-container-group
-  image: mcr.microsoft.com/azuredocs/aci-helloworld
-  port: 80
-  cpuCores: 1
-  memoryInGb: 2
-  restartPolicy: Always
-  zone: null

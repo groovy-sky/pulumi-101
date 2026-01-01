@@ -1,0 +1,4 @@
+services:
+  - name: az-app1
+    path: services/az-app1
+    description: "Empty resource group (starter service)"
