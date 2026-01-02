@@ -2,7 +2,7 @@
 **/.pulumi/
 
 # Generated stack config files (created by pulumiw.py)
-# These are auto-generated from services/config/<provider>/Pulumi.<stack>.yaml + override files
+# These are auto-generated from services/<provider>/Pulumi.<stack>.yaml + override files
 services/**/stateless/**/Pulumi.dev.yaml
 services/**/stateless/**/Pulumi.prod.yaml
 services/**/stateless/**/Pulumi.staging.yaml
