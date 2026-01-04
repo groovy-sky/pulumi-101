@@ -11,4 +11,4 @@
 #   app: az-app1
 
 projectConfig:
-  bicepTemplatePath: main.bicep
+  bicepTemplatePath: services/azure/stateless/az-app1/main.bicep

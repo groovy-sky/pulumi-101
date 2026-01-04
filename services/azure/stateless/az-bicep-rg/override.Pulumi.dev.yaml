@@ -3,6 +3,3 @@
 
 # Uncomment to override resource group name:
 # resourceGroupName: rg-custom-az-bicep-rg-dev
-
-projectConfig:
-  armTemplatePath: resource-group.json

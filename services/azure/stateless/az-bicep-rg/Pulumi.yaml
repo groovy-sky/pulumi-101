@@ -28,7 +28,6 @@ variables:
       return: result
   deploymentLocation: ${az-bicep-rg:location}
 
-
 resources:
   rgDeployment:
     type: azure-native:resources:DeploymentAtSubscriptionScope

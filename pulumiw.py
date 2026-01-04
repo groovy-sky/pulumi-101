@@ -277,10 +277,28 @@ def map_vars_to_pulumi_config(
     if extra_cfg is not None:
         if not isinstance(extra_cfg, dict):
             raise ValueError("'projectConfig' must be a mapping/object")
-        for key, value in extra_cfg.items():
-            if value is None:
-                continue
-            cfg[f"{prefix}{key}"] = value
+
+        def apply_extra(entries: Dict[str, Any]) -> None:
+            for key, value in entries.items():
+                if value is None:
+                    continue
+                cfg[f"{prefix}{key}"] = value
+
+        shared_cfg = {k: v for k, v in extra_cfg.items() if k != "services"}
+        if shared_cfg:
+            apply_extra(shared_cfg)
+
+        services_cfg = extra_cfg.get("services")
+        if services_cfg is not None:
+            if not isinstance(services_cfg, dict):
+                raise ValueError("'projectConfig.services' must be a mapping/object")
+            svc_cfg = services_cfg.get(service_name)
+            if svc_cfg is not None:
+                if not isinstance(svc_cfg, dict):
+                    raise ValueError(
+                        f"'projectConfig.services.{service_name}' must be a mapping/object"
+                    )
+                apply_extra(svc_cfg)
 
     # Future: add AWS, GCP provider mappings here
 
