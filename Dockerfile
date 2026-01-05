@@ -1,4 +1,4 @@
-FROM python:3.11-slim AS runtime
+FROM docker.io/python:3.11-slim AS runtime
 
 ARG PULUMI_VERSION=3.117.0
 ENV PULUMI_HOME=/opt/pulumi \
